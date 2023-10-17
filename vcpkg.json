@@ -5,6 +5,8 @@
   "dependencies": [
     "fmt",
     "gtest",
-    "benchmark"
+    "benchmark",
+    "cpp-httplib",
+    "openssl"
   ]
 }

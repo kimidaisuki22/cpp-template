@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.23.0)
-project(main VERSION 0.1.0)
+project(main VERSION 0.0.1)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)

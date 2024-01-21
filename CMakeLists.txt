@@ -1,4 +1,10 @@
 cmake_minimum_required(VERSION 3.23.0)
+
+option(WITH_BENCHMARK "Build benchmarks" OFF)
+if(WITH_BENCHMARK)
+  list(APPEND VCPKG_MANIFEST_FEATURES "benchmark")
+endif()
+
 project(main VERSION 0.0.1)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -19,7 +25,9 @@ target_include_directories(main PUBLIC
 enable_testing()
 add_subdirectory(test)
 
-add_subdirectory(benchmark)
+if(WITH_BENCHMARK)
+  add_subdirectory(benchmark)
+endif()
 
 install(TARGETS main DESTINATION bin)
 # install(TARGETS $<TARGET_RUNTIME_DLLS:main> DESTINATION bin)

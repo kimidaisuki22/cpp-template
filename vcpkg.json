@@ -5,7 +5,18 @@
     "dependencies": [
         "fmt",
         "gtest",
-        "benchmark",
         "spdlog"
-    ]
+    ],
+    "features": {
+        "benchmark": {
+          "description": "build benchmarks",
+          "dependencies": [
+            {
+              "name": "benchmark",
+              "features": [
+              ]
+            }
+          ]
+        }
+      }
 }

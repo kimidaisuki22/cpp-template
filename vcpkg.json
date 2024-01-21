@@ -4,7 +4,6 @@
     "version": "0.0.1",
     "dependencies": [
         "fmt",
-        "gtest",
         "spdlog"
     ],
     "features": {
@@ -17,6 +16,16 @@
               ]
             }
           ]
-        }
+        },
+        "test": {
+                "description": "build tests",
+                "dependencies": [
+                    {
+                    "name": "gtest",
+                    "features": [
+                    ]
+                    }
+                ]
+                }
       }
 }

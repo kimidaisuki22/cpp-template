@@ -5,6 +5,10 @@ if(WITH_BENCHMARK)
   list(APPEND VCPKG_MANIFEST_FEATURES "benchmark")
 endif()
 
+if(BUILD_TESTING)
+  list(APPEND VCPKG_MANIFEST_FEATURES "test")
+endif()
+
 project(main VERSION 0.0.1)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -21,10 +25,10 @@ target_include_directories(main PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
 )
-
-enable_testing()
-add_subdirectory(test)
-
+if(BUILD_TESTING)
+  enable_testing()
+  add_subdirectory(test)
+endif()
 if(WITH_BENCHMARK)
   add_subdirectory(benchmark)
 endif()

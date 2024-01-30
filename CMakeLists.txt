@@ -21,11 +21,20 @@ add_link_options(-fuse-ld=mold)
 
 add_executable(main src/main.cpp)
 
+# Create a library
+add_library(foo)
+# Add the module file to the library
+target_sources(foo
+  PUBLIC
+    FILE_SET CXX_MODULES FILES
+      foo.cxx
+)
+
+
 find_package(fmt CONFIG REQUIRED)
 target_link_libraries(main PRIVATE fmt::fmt)
 find_package(spdlog CONFIG REQUIRED)
-target_link_libraries(main PRIVATE spdlog::spdlog)
-
+target_link_libraries(main PRIVATE spdlog::spdlog foo)
 target_include_directories(main PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>

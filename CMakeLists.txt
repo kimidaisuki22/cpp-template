@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.23.0)
-
+set(CMAKE_C_COMPILER gcc-14)
+set(CMAKE_CXX_COMPILER g++-14)
 option(WITH_BENCHMARK "Build benchmarks" OFF)
 if(WITH_BENCHMARK)
   list(APPEND VCPKG_MANIFEST_FEATURES "benchmark")
@@ -12,7 +13,9 @@ endif()
 project(main VERSION 0.0.1)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 26)
+
+add_link_options(-fuse-ld=mold)
 
 add_executable(main src/main.cpp)
 

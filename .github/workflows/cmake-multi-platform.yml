@@ -52,6 +52,7 @@ jobs:
       run: |
           echo "CMAKE_TOOLCHAIN_FILE=$VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake" >> $GITHUB_ENV
           echo "VCPKG_ROOT=$VCPKG_INSTALLATION_ROOT" >> $GITHUB_ENV
+          echo "VCPKG_BINARY_SOURCES=x-gha,readwrite" >> $GITHUB_ENV
 
     # export github action cache env.
     - uses: actions/github-script@v7

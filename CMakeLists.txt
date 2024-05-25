@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.23.0)
+cmake_minimum_required(VERSION 3.13.0)
 
 option(WITH_BENCHMARK "Build benchmarks" OFF)
 if(WITH_BENCHMARK)
@@ -14,14 +14,15 @@ project(main VERSION 0.0.1)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
 
+add_library(main_lib src/main_lib.cpp)
 add_executable(main src/main.cpp)
 
 find_package(fmt CONFIG REQUIRED)
-target_link_libraries(main PRIVATE fmt::fmt)
 find_package(spdlog CONFIG REQUIRED)
-target_link_libraries(main PRIVATE spdlog::spdlog)
+target_link_libraries(main_lib public spdlog::spdlog fmt::fmt)
+target_link_libraries(main PRIVATE main_lib)
 
-target_include_directories(main PUBLIC
+target_include_directories(main_lib PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
 )
